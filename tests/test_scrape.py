@@ -170,6 +170,7 @@ class ScrapeTests(CatalogCase):
     def test_listing_mutation_between_complete_traversals_is_rejected(self):
         self.first()
         before = self.public_hashes()
+        bundle = validate(self.root)
 
         def unstable(client, path, headers):
             if "/repos?" in path and client.listings == 1:
@@ -177,8 +178,78 @@ class ScrapeTests(CatalogCase):
             return None
 
         with self.assertRaisesRegex(CatalogError, "github_unstable_listing"):
-            scrape(self.root, client=FixtureClient(cache=self.cache(), override=unstable), now=LATER)
+            poll(FixtureClient(cache=self.cache(), override=unstable),
+                 bundle["config"], bundle["state"], LATER)
         self.assertEqual(before, self.public_hashes())
+
+    def test_moving_listing_converges_without_reprobing_unchanged_heads(self):
+        def moves_once(client, path, headers):
+            if "/repos?" in path and client.listings == 1:
+                client.rows[0]["pushed_at"] = LATER
+                client.heads["example/alpha"] = NEW_HEAD
+            return None
+
+        client = FixtureClient(override=moves_once)
+        with mock.patch("sys.stderr", new_callable=io.StringIO) as warnings:
+            receipt = scrape(self.root, client=client, now=LATER)
+        self.assertEqual(receipt["status"], "success")
+        self.assertEqual(client.listings, 4)
+        self.assertEqual(client.requests, 11)
+        self.assertEqual(sum("/repos/example/alpha/git/ref/" in path for path, _ in client.calls), 2)
+        self.assertEqual(sum("/repos/example/empty/git/ref/" in path for path, _ in client.calls), 1)
+        self.assertEqual(validate(self.root)["state"][111]["observed_head"], NEW_HEAD)
+        self.assertEqual(len(list((self.root / "data/observations").glob("[0-9]*.json"))), 1)
+        self.assertEqual([json.loads(line) for line in warnings.getvalue().splitlines()],
+                         [{"warning": "github_unstable_listing", "attempt": 1, "max_attempts": 3}])
+
+    def test_persistent_movement_stops_after_three_attempts_without_writing_state(self):
+        self.first()
+        before, cached = self.public_hashes(), self.cache()
+
+        def always_moves(client, path, headers):
+            if "/repos?" in path and client.listings % 2 == 1:
+                client.rows[0]["pushed_at"] = f"2026-01-02T01:00:{client.listings:02d}Z"
+            return None
+
+        client = FixtureClient(cache=cached, override=always_moves)
+        with mock.patch("sys.stderr", new_callable=io.StringIO) as warnings:
+            with self.assertRaisesRegex(CatalogError, "github_unstable_listing"):
+                scrape(self.root, client=client, now=LATER)
+        self.assertEqual(client.listings, 6)
+        self.assertEqual(self.public_hashes(), before)
+        self.assertEqual(self.cache(), cached)
+        receipt = load_json(self.root / ".cache/last-run.json")
+        self.assertEqual(receipt["status"], "failed")
+        self.assertEqual(receipt["last_success_at"], NOW)
+        self.assertEqual([json.loads(line)["attempt"] for line in warnings.getvalue().splitlines()], [1, 2])
+
+    def test_scope_retry_keeps_the_original_request_budget(self):
+        before = self.public_hashes()
+
+        def moves_once(client, path, headers):
+            if "/repos?" in path and client.listings == 1:
+                client.rows[0]["pushed_at"] = LATER
+            return None
+
+        client = FixtureClient(override=moves_once)
+        client.max_requests = 6
+        with mock.patch("sys.stderr", new_callable=io.StringIO):
+            with self.assertRaisesRegex(CatalogError, "github_request_budget_exhausted"):
+                scrape(self.root, client=client, now=LATER)
+        self.assertEqual(len(client.calls), 6)
+        self.assertEqual(client.listings, 2)
+        self.assertEqual(self.public_hashes(), before)
+
+    def test_non_scope_errors_are_not_retried(self):
+        self.first()
+        before = self.public_hashes()
+        with mock.patch("rapp_catalog.scrape.poll", side_effect=CatalogError("github_rate_limited")) as probe:
+            with mock.patch("sys.stderr", new_callable=io.StringIO) as warnings:
+                with self.assertRaisesRegex(CatalogError, "github_rate_limited"):
+                    scrape(self.root, client=FixtureClient(cache=self.cache()), now=LATER)
+        self.assertEqual(probe.call_count, 1)
+        self.assertEqual(warnings.getvalue(), "")
+        self.assertEqual(self.public_hashes(), before)
 
     def test_duplicate_and_missing_pagination_are_errors(self):
         bundle = validate(self.root)

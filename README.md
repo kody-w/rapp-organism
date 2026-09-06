@@ -262,8 +262,11 @@ rows cause failure. It never reads files or commits' raw source bodies.
 2. Resolve heads when normalized `pushed_at`/default-branch/name metadata changed,
    a cached head expired (24 hours), or `--refresh-heads` was requested. Use ETags
    and revalidate cached response shapes.
-3. Repeat the **complete metadata traversal**. Any mismatch, rate limit, redirect,
-   HTTP error, invalid JSON, truncation or unstable scope fails the run.
+3. Repeat the **complete metadata traversal**. If the source moved during head
+   collection, retry up to three total attempts using the same validated in-memory
+   hints and shared request budget. Every accepted attempt still requires two
+   matching complete traversals. Persistent movement, rate limits, redirects,
+   HTTP errors, invalid JSON and truncation fail the run.
 4. Only a completely validated candidate can append one atomic event under
    `data/observations/`. It contains changed records, before hashes, time,
    sequence and chained snapshot hashes. Identical inputs create no event.
@@ -275,6 +278,10 @@ snapshot: a repository can change immediately after observation. A fresh receipt
 means the public metadata traversal succeeded; cached head probes may be up to
 24 hours old. New source bodies are not fetched. API request budgets and timeouts
 fail explicitly rather than silently sampling part of the organism.
+
+Only a moving consistency fence is retried. Attempts share one request budget,
+emit bounded diagnostic codes and cannot commit partial data or persist a failed
+candidate as a successful observation.
 
 The observer repository's own generated head, `size` and `pushed_at` are excluded
 from observation. Its publication commits cannot recursively generate further

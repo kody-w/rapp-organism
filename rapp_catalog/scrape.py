@@ -9,6 +9,7 @@ import os
 from pathlib import Path
 import re
 import socket
+import sys
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -27,6 +28,7 @@ from .observations import (
 API = "https://api.github.com"
 MAX_BODY = 8 * 1024 * 1024
 HEAD_RECHECK_SECONDS = 24 * 3600
+LISTING_ATTEMPTS = 3
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -323,7 +325,18 @@ def scrape(root, cache_path=None, run_path=None, *, client=None, now=None,
             cached = load_json(cache_path) if cache_path.exists() else None
             client = GitHubClient(cached, os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN"),
                                   max_requests=max_requests)
-        candidate = poll(client, config, previous, now, refresh_heads)
+        # A moving fence can converge quickly using the same validated hints.
+        # Retain the shared request budget and never publish an unstable attempt.
+        for attempt in range(1, LISTING_ATTEMPTS + 1):
+            try:
+                candidate = poll(client, config, previous, now, refresh_heads)
+                break
+            except CatalogError as error:
+                if error.code != "github_unstable_listing" or attempt == LISTING_ATTEMPTS:
+                    raise
+                print(json.dumps({
+                    "warning": error.code, "attempt": attempt, "max_attempts": LISTING_ATTEMPTS,
+                }), file=sys.stderr)
         # Everything that may fail validation runs before the sole tracked write.
         for row in candidate.values():
             validate_observation(row)
