@@ -1,0 +1,7 @@
+{
+  "schema": "rapp-public-catalog-config/1",
+  "owner": "kody-w",
+  "observer_repository": "kody-w/rapp-organism",
+  "site_url": "https://kody-w.github.io/rapp-organism/",
+  "stale_after_seconds": 21600
+}

@@ -1,0 +1,12 @@
+{
+  "schema": "rapp-public-payload-policy/1",
+  "encrypted_full_upload_allowed": false,
+  "withheld_payloads": [
+    {
+      "generation_id": "g0002",
+      "projection_of": "c1a86a55bece80df11cfc5e747cf016c83d4cf4ad5347dab9f7ce89233d0e58d",
+      "carrier_bytes": 21919507382,
+      "reason": "disclosure_and_rights_not_cleared"
+    }
+  ]
+}

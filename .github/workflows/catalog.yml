@@ -1,0 +1,98 @@
+name: RAPP public catalog
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Build only, or poll public sources and publish last-good metadata
+        type: choice
+        options: [poll, build]
+        default: poll
+        required: true
+  schedule:
+    - cron: '17 * * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rapp-public-catalog-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Test without private inputs or dependencies
+        run: python3 -m unittest discover -s tests -v
+      - name: Build and query the complete public projection
+        run: python3 -m rapp_catalog build
+      - name: Upload build-only Pages artifact
+        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'build'))
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: site
+
+  scrape:
+    needs: check
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'poll'))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: main
+          persist-credentials: true
+      - name: Restore public ETag and head hints
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .cache/github.json
+          key: rapp-public-cache-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            rapp-public-cache-v1-
+      - name: Poll only complete public API sources
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -m rapp_catalog scrape
+      - name: Test and build before committing any observation
+        run: |
+          python3 -m unittest discover -s tests -v
+          python3 -m rapp_catalog build --freshness .cache/last-run.json
+      - name: Save public metadata hints
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .cache/github.json
+          key: rapp-public-cache-v1-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Commit only semantic events, and fail on commit or push errors
+        run: python3 scripts/commit_observations.py
+      - name: Upload complete last-good Pages artifact
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: site
+
+  deploy:
+    needs: [check, scrape]
+    if: always() && github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && needs.check.result == 'success' && (needs.scrape.result == 'success' || needs.scrape.result == 'skipped')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy validated Pages artifact
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

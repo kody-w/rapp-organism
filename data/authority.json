@@ -1,0 +1,24 @@
+{
+  "schema": "rapp-authority-context/2",
+  "accepted": {
+    "status": "accepted_canonical_checkpoint",
+    "revision": "rev-15",
+    "commit": "eb50008011447f5e69372ac22a1755f0978d15ed",
+    "repository_url": "https://github.com/kody-w/rapp-1"
+  },
+  "content_source": {
+    "status": "normative_content_source",
+    "revision": "rev-15",
+    "commit": "58058d08c9f0e340fae07c9865647f599c32634d",
+    "repository_url": "https://github.com/kody-w/rapp-1",
+    "spec_path": "SPEC.md",
+    "spec_sha256": "348e7d5baa94aaf2ce4c5354f3cb261f389298a04af65e271a686d3b62f7c384"
+  },
+  "candidate": {
+    "status": "reviewed_proposal_not_ratified",
+    "commit": "8a83b3fa8bebe16411fc4a130c6447ace15b43ac",
+    "pull_request_number": 38,
+    "pull_request_url": "https://github.com/kody-w/rapp-1/pull/38"
+  },
+  "runtime_activation": "not_established"
+}

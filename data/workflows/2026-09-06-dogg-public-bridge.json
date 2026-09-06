@@ -1,0 +1,49 @@
+{
+  "schema": "rapp-catalog-workflow-observation/1",
+  "observation_id": "dogg-public-bridge-20260906",
+  "observed_date": "2026-09-06",
+  "workflow": "native-dogg-tick-to-rapp1-bridge-to-node-byte-recovery",
+  "result": "success-within-declared-scope",
+  "public_starting_point": "https://github.com/kody-w/dogg/tree/feat/rapp1-bridge-20260906",
+  "source": {
+    "repository": "https://github.com/kody-w/dogg",
+    "commit": "7fce94a13f1537e214c6c612d085ac344679bbd1",
+    "path": "ticks/854.json",
+    "bytes": 551,
+    "sha256": "9855a8f61afb26da5a93fcac7cb13e6e54c5c4a39f2240e120b90d65aa69a81c"
+  },
+  "reference_candidate": {
+    "repository": "https://github.com/kody-w/rapp-1",
+    "commit": "8a83b3fa8bebe16411fc4a130c6447ace15b43ac",
+    "rapp_py_sha256": "d11ad216fb4cee7a2326d870c934876ecf67fb5af5df876f1866913a55ae3c38",
+    "accepted_new_protocol_revision": false
+  },
+  "measured": {
+    "fresh_public_checkout": true,
+    "private_bootstrap_or_prior_context": false,
+    "source_repairs": 0,
+    "producer": "CPython 3.14.4",
+    "receiver": "Node.js 25.2.0",
+    "emitted_frames_verified": 1,
+    "recovered_source_bytes_equal": true,
+    "byte_comparison_exit_code": 0,
+    "bridge_contracts_passed": 27,
+    "native_frames_checked": 1652,
+    "native_chains_checked": 7,
+    "unchanged_repeat_observed": true,
+    "overwrite_refused": true,
+    "recovered_code_executed": false
+  },
+  "scope": {
+    "physical_machine_count": 1,
+    "unsigned_local_snapshot_bridge": true,
+    "separate_runtime_and_directory": true,
+    "different_physical_machines": false,
+    "os_enforced_sandbox": false,
+    "authenticated_consumer_acceptance": false,
+    "full_organism_runtime_compatibility": false,
+    "historical_native_records_rewritten": false
+  },
+  "source_summary_sha256": "ffe70bfcf2ed2b3c5bdd58f28ec2be0b88755036ebcb5b8141df3d28e234beff",
+  "reporting_basis": "public_safe_independent_summary_only"
+}

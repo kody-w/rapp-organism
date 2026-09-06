@@ -1,0 +1,16 @@
+{
+  "schema": "rapp-public-distribution/3",
+  "generations": [
+    {
+      "generation_id": "g0002",
+      "carrier_bytes": 21919507382,
+      "carrier_sha256": "c1a86a55bece80df11cfc5e747cf016c83d4cf4ad5347dab9f7ce89233d0e58d",
+      "frame_hash": "af2446a35c15e1d14670057c4fd9f80c78c7668803857f2322b49df4a760cd11",
+      "publication_status": "withheld",
+      "screening_status": "blocked",
+      "clear_for_exact_publication": false,
+      "parts": [],
+      "verification": null
+    }
+  ]
+}

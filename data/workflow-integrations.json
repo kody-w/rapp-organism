@@ -1,0 +1,17 @@
+{
+  "schema": "rapp-public-workflow-integrations/1",
+  "rows": [
+    {
+      "observation_id": "dogg-public-bridge-20260906",
+      "repository": "https://github.com/kody-w/dogg",
+      "tested_source_commit": "7fce94a13f1537e214c6c612d085ac344679bbd1",
+      "pull_request_number": 4,
+      "pull_request_url": "https://github.com/kody-w/dogg/pull/4",
+      "merge_commit": "b4c45def3a5951eb15dc5a6eed7a1a7d20be68fe",
+      "target_branch": "main",
+      "merged_at": "2026-09-06T16:08:13Z",
+      "state": "merged",
+      "reference_protocol_ratified": false
+    }
+  ]
+}
