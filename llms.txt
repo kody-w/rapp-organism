@@ -2,6 +2,14 @@
 
 RAPP is the product. This repository is public, reproducible metadata and distribution plumbing, not a new protocol or runtime.
 
+Primary workflow: Python processes raw public data, writes readable JSON snapshots, and Git records only real changes. Git history is the time series; no browser SQL runtime is required.
+Processor: https://github.com/kody-w/rapp-organism/blob/main/scrape.py
+Latest world signals: https://github.com/kody-w/rapp-organism/blob/main/snapshots/world.json
+World time series: https://github.com/kody-w/rapp-organism/commits/main/snapshots/world.json
+Repository snapshots: https://github.com/kody-w/rapp-organism/blob/main/snapshots/repositories.json
+Run `python3 scrape.py` with the publisher's GitHub API credentials, or `python3 scrape.py --recorded` to reuse committed repository observations while fetching public DOGG data. The scheduled Action supplies its own temporary token.
+Read changes with `git log -p -- snapshots/world.json`. Collector timestamps never create commits; actual source timestamps, missing values and upstream retention remain explicit.
+
 Source: https://github.com/kody-w/rapp-organism
 Read and follow public journals: https://kody-w.github.io/dogg/
 Canonical public starter roster: https://kody-w.github.io/dogg/subscriptions.json
@@ -32,7 +40,7 @@ There are 163303 owner paths, 2841 hydrated dependency paths, 96781 unique blobs
 Polling discovers public repositories and observes public heads; it does not replace carried commits or import new file bodies.
 No private key, account, paid warehouse, or original capture directory is needed to build or query.
 
-Datasette Lite runs SQLite queries in the browser. This project does NOT expose a server SQL/JSON query API.
+SQLite downloads and local queries are optional projections. This project does NOT require a browser SQL runtime or expose a server SQL/JSON query API.
 The public artifact is an allowlisted metadata-only projection_of c1a86a55bece80df11cfc5e747cf016c83d4cf4ad5347dab9f7ce89233d0e58d.
 The exact full carrier is WITHHELD, not pending or available. clear_for_exact_publication is false. Complete metadata does not include or make available the raw/private payload.
 No raw or encrypted-full upload/download is offered. All carrier commands refuse withheld manifests, including external-index attempts to override the repository policy. Do not expose raw findings, sensitive locators or source diagnostic content.

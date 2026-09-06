@@ -1,9 +1,51 @@
 # RAPP public organism catalog
 
-Public, reproducible distribution plumbing for **RAPP**. Git records small,
-normalized metadata and meaningful public-source changes; SQLite and a static
-catalog are generated outside Git. This is not another product, a hosted database
-service, a new RAPP implementation, or a runtime activation mechanism.
+**Python processes raw public data. Changed JSON is committed to Git. Git history
+is the time series.** This follows Simon Willison's git-scraping pattern: compare
+successive snapshots to see what moved, rather than standing up a database service.
+
+## The main workflow
+
+[`scrape.py`](scrape.py) fetches public repository observations and DOGG's public
+world data, then writes two ordinary, readable files:
+
+- [`snapshots/repositories.json`](snapshots/repositories.json): public repository
+  names, observed heads and availability.
+- [`snapshots/world.json`](snapshots/world.json): source-dated public signals,
+  including prices, earthquake counts and the ISS position.
+
+The [scheduled workflow](.github/workflows/catalog.yml) runs the Python processor
+hourly and commits only changed data. No change means no commit. Polling clocks
+are not inserted into snapshots; a new source observation keeps its own timestamp.
+Failed requests stop publication rather than replacing good data with an empty result.
+
+```sh
+python3 scrape.py
+git diff -- snapshots/
+
+# Read the time series and the actual changes:
+git log --oneline -- snapshots/world.json
+git log -p -- snapshots/world.json
+git show <commit>:snapshots/world.json
+```
+
+Actions supplies its temporary GitHub token for the owner-wide API traversal.
+To try the processor without a token, `python3 scrape.py --recorded` reuses the
+repository observations already committed here and still fetches public DOGG data.
+`python3 scrape.py --check` checks the two saved snapshots without network access.
+The workflow uses `scripts/commit_observations.py` to stage only the named JSON
+snapshots and append-only observation events, then commit and push real changes.
+
+World processing is an explicit numeric-field allowlist in `FIELDS`, not a dump
+of arbitrary frame payloads. Missing values and upstream last-good retention stay
+visible. Source frame IDs are provenance markers, not signature verification.
+Source code, free-form posts, credentials and the withheld raw carrier are not copied.
+
+## Optional inventory and query tools
+
+The larger frozen inventory, SQLite download and static catalog remain available,
+but are not required for this Python-and-Git workflow. There is no browser runtime,
+hosted SQL service, new RAPP protocol or runtime activation required.
 
 **The exact full carrier is WITHHELD; `clear_for_exact_publication: false`.**
 The public artifact is an explicitly allowlisted metadata/query **`projection_of`**
@@ -18,13 +60,12 @@ Public-safe reviewed code links and sanitized metadata remain available.
 - **Catalog after a successful Pages deployment:** <https://kody-w.github.io/rapp-organism/>
 - **Agent entrypoint:** [llms.txt](llms.txt)
 - **Machine entrypoint:** `index.json` at the catalog URL
-- **Query:** downloadable `catalog.sqlite`, local CLI, or
-  [Datasette Lite](https://lite.datasette.io/?url=https%3A%2F%2Fkody-w.github.io%2Frapp-organism%2Fcatalog.sqlite)
+- **Optional query:** downloadable `catalog.sqlite` and the local CLI.
 
 Pages and Actions must be enabled by the publisher. A URL in this README is not
 proof that it is deployed. Check its HTTP response, `index.json`, `SHA256SUMS` and
-the latest workflow run. There is **no server-side SQL API**: Datasette Lite runs
-Python/SQLite in your browser and downloads the database through Pages' CORS support.
+the latest workflow run. There is **no server-side SQL API**. Read the committed
+JSON and Git history directly, or query a downloaded SQLite file locally.
 
 DOGG's [public starter roster](https://kody-w.github.io/dogg/subscriptions.json)
 is the sole curated following list. The catalog links to that authority; it does
@@ -76,8 +117,7 @@ PY
 
 For a local browser preview, run `python3 -m http.server 8000 --directory site`
 and visit `http://localhost:8000/`. Stop the foreground server when finished.
-The Datasette links intentionally load the **published Pages database**, not
-localhost. Local query examples do not need Datasette or a running server.
+Local query examples do not need a browser SQL runtime or a running server.
 
 ### Query examples
 
@@ -310,7 +350,7 @@ Publishers can manually run **RAPP public catalog → Run workflow → mode: pol
 Use `mode: build` to rebuild without polling. Local polling is optional:
 
 ```sh
-python3 -m rapp_catalog scrape
+python3 scrape.py
 python3 -m rapp_catalog build --freshness .cache/last-run.json
 ```
 
@@ -406,8 +446,8 @@ operational constraints before scaling bulk distribution.
   carrier, matrix, archive, SQLite, cache or site output.
 - Push reviewed main; enable Actions and Pages with **GitHub Actions** as the build
   source. No remote actions are performed by the importer/build tool.
-- Wait for the pinned build/deploy workflow, then verify HTTP 200, CORS, hashes,
-  database queries and the actual Datasette Lite link on the public Pages URL.
+- Wait for the workflow, then inspect the committed JSON, its Git diff/history
+  and the published download hashes. A browser SQL runtime is not a release gate.
 - Manually dispatch `poll` and check its public receipt, semantic event diff and
   no-op behavior; schedules alone are not a freshness guarantee.
 - Publish/test the allowlisted metadata projection and reviewed public-safe code

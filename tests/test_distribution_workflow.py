@@ -178,6 +178,25 @@ class WorkflowTests(CatalogCase):
         self.assertEqual(sum(args[1] == "push" for args in calls), 1)
         self.assertIn(["git", "push", "origin", "HEAD:main"], calls)
 
+    def test_named_processed_snapshots_can_be_updated_without_allowing_other_files(self):
+        helper = self.helper()
+        calls, run = self.fake_git(changes=True)
+
+        def status(args, **kwargs):
+            if args[1] == "status":
+                return SimpleNamespace(returncode=0, stderr=b"",
+                    stdout=b" M snapshots/world.json\0?? snapshots/repositories.json\0")
+            return run(args, **kwargs)
+
+        with mock.patch.object(helper.subprocess, "run", side_effect=status):
+            self.assertEqual(helper.commit_observations(), {"semantic_commit": True})
+        self.assertIn(["git", "add", "--", "snapshots/repositories.json", "snapshots/world.json"], calls)
+        for invalid in (b" M snapshots/private.json\0", b" D snapshots/world.json\0"):
+            result = SimpleNamespace(returncode=0, stdout=invalid, stderr=b"")
+            with mock.patch.object(helper.subprocess, "run", return_value=result):
+                with self.assertRaises(helper.GitFailure):
+                    helper.commit_observations()
+
     def test_workflow_permissions_pins_schedule_and_timeouts(self):
         workflow = (ROOT / ".github" / "workflows" / "catalog.yml").read_text()
         self.assertIn("17 * * * *", workflow)

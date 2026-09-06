@@ -1,4 +1,4 @@
-"""CI only: append-only observation commits, with explicit no-op/error semantics."""
+"""CI only: commit named public snapshots/events, with explicit no-op/error semantics."""
 
 import json
 import re
@@ -24,7 +24,9 @@ def commit_observations():
     for record in status.split(b"\0"):
         if not record:
             continue
-        if not re.fullmatch(rb"\?\? data/observations/[0-9]{10}\.json", record):
+        event = re.fullmatch(rb"\?\? data/observations/[0-9]{10}\.json", record)
+        snapshot = re.fullmatch(rb"(?:\?\?| M) snapshots/(?:repositories|world)\.json", record)
+        if not event and not snapshot:
             raise GitFailure("unexpected_worktree_change")
         paths.append(record[3:].decode("ascii"))
     if paths:
@@ -34,7 +36,7 @@ def commit_observations():
         return {"semantic_commit": False}
     git("config", "user.name", "github-actions[bot]")
     git("config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com")
-    git("commit", "-m", "data: record public RAPP source changes")
+    git("commit", "-m", "data: update public RAPP snapshots")
     git("push", "origin", "HEAD:main")
     return {"semantic_commit": True}
 

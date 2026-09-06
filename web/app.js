@@ -88,8 +88,8 @@ function showRepositories(rows) {
 }
 
 async function start() {
-  const [index, repos, queries, receipt, authority, distribution, workflows] = await Promise.all([
-    getJSON("index.json"), getJSON("repos.json"), getJSON("queries.json"),
+  const [index, repos, receipt, authority, distribution, workflows] = await Promise.all([
+    getJSON("index.json"), getJSON("repos.json"),
     getJSON("freshness.json"), getJSON("data/authority.json"), getJSON("data/distribution.json"),
     getJSON("workflow-observations.json"),
   ]);
@@ -107,12 +107,6 @@ async function start() {
   element("capture-note").textContent =
     `Generation ${latest.generation_id} · captured ${latest.captured_at} · complete frozen-scope metadata only · raw payload ${words(index.payload_availability)} · runtime compatibility not established.`;
   element("db-size").textContent = `(${(index.database.bytes / 1048576).toFixed(1)} MiB)`;
-  element("lite-link").href = publicLink("Datasette Lite", queries.datasette_lite).href;
-  for (const preset of queries.queries) {
-    const item = document.createElement("li");
-    item.append(publicLink(preset.title, preset.url));
-    element("presets").append(item);
-  }
   showFreshness(receipt);
   setInterval(() => showFreshness(receipt), 60000);
   showRepositories(repos.rows);

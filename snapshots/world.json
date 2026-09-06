@@ -1,0 +1,29 @@
+{
+  "missing_values": [],
+  "retained_last_good": false,
+  "source": "https://raw.githubusercontent.com/kody-w/dogg/main/orient.json",
+  "source_frame_hash": "b5643b176e5c74997214b6b5313afaa8b5eb39d9220031d33fb88685d9a8ecfc",
+  "source_recorded_at": "2026-09-06T19:58:47.806Z",
+  "source_sequence": 761,
+  "tick": 857,
+  "upstream_refresh": "ok",
+  "values": {
+    "bitcoin_block_height": 965827,
+    "bitcoin_dominance_percent": "59.2",
+    "bitcoin_fastest_fee_sat_vb": 2,
+    "bitcoin_mempool_transactions": 81013,
+    "bitcoin_usd": "79800.085",
+    "crypto_market_cap_usd": "2698086565117",
+    "earthquakes_past_hour": 11,
+    "gb_grid_carbon_gco2_kwh": 128,
+    "hn_top_story_id": 49588988,
+    "iss_latitude": "-44.939",
+    "iss_longitude": "-157.832",
+    "largest_earthquake_magnitude": "2.2",
+    "planetary_k_index": "0.67",
+    "usd_cny": "6.7344",
+    "usd_eur": "0.8611",
+    "usd_gbp": "0.7397",
+    "usd_jpy": "156.1729"
+  }
+}

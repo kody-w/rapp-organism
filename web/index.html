@@ -76,13 +76,13 @@ html[data-theme="dark"] {
   <header>
     <p class="eyebrow">Public, versioned, reproducible</p>
     <h1>RAPP <span>organism catalog</span></h1>
-    <p class="lede">An allowlisted public metadata projection of the captured organism. Complete metadata does not mean available raw payload: the exact full carrier is WITHHELD.</p>
+    <p class="lede">Python processes raw public data into JSON snapshots. Changed snapshots are committed to Git, so the history shows what moved over time.</p>
     <p>Just want to follow public updates? <a href="https://kody-w.github.io/dogg/">Read &amp; follow DOGGs</a>.
       Use this catalog to find repositories, inspect provenance, or query the frozen inventory.</p>
     <nav aria-label="Catalog navigation">
       <a href="https://kody-w.github.io/dogg/">Read &amp; follow DOGGs</a>
       <a href="#repositories">Repositories</a>
-      <a href="#query">Query metadata</a>
+      <a href="#query">Snapshots &amp; history</a>
       <a href="#workflows">Measured workflows</a>
       <a href="#boundaries">Scope &amp; provenance</a>
       <a href="llms.txt">Agent entrypoint</a>
@@ -110,12 +110,18 @@ html[data-theme="dark"] {
       </div>
     </section>
     <section id="query" aria-labelledby="query-title">
-      <h2 id="query-title">Query the complete metadata</h2>
-      <p>All captured file metadata rows and blob identities are queryable; raw source bodies and the withheld full payload are not included. SQL runs in your browser through Datasette Lite, or locally in read-only SQLite. <strong>There is no hosted SQL API.</strong></p>
-      <p><a id="lite-link" class="primary" href="https://lite.datasette.io/?url=https%3A%2F%2Fkody-w.github.io%2Frapp-organism%2Fcatalog.sqlite">Open Datasette Lite</a>
-        <a href="catalog.sqlite" download>Download metadata SQLite <span id="db-size"></span></a></p>
-      <p class="muted">Opening Datasette Lite downloads the database and its browser-side Python/WebAssembly runtime. On small devices, use the smaller JSON/CSV downloads instead.</p>
-      <ul id="presets" class="presets"></ul>
+      <h2 id="query-title">Python snapshots, Git time series</h2>
+      <p>The <a href="https://github.com/kody-w/rapp-organism/blob/main/scrape.py">Python processor</a>
+        reads public data, selects useful fields and saves plain JSON. The scheduled job commits only
+        real changes. Read successive versions or their diffs to see prices, counts and positions move.</p>
+      <p><a class="primary" href="https://github.com/kody-w/rapp-organism/commits/main/snapshots/world.json">See changes over time</a>
+        <a href="https://github.com/kody-w/rapp-organism/blob/main/snapshots/world.json">Latest world snapshot</a> ·
+        <a href="https://github.com/kody-w/rapp-organism/blob/main/snapshots/repositories.json">Repository snapshot</a></p>
+      <pre><code>python3 scrape.py
+git log -p -- snapshots/world.json</code></pre>
+      <p>Git is the history. No browser SQL runtime is needed.
+        <a href="catalog.sqlite" download>Optional metadata SQLite download <span id="db-size"></span></a>
+        can be queried locally. <strong>There is no hosted SQL API.</strong></p>
       <details>
         <summary>Machine-readable entrypoints and integrity</summary>
         <ul>

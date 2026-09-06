@@ -33,7 +33,9 @@ jobs:
         with:
           persist-credentials: false
       - name: Test without private inputs or dependencies
-        run: python3 -m unittest discover -s tests -v
+        run: |
+          python3 -m unittest discover -s tests -v
+          python3 scrape.py --check
       - name: Build and query the complete public projection
         run: python3 -m rapp_catalog build
       - name: Upload build-only Pages artifact
@@ -61,13 +63,14 @@ jobs:
           key: rapp-public-cache-v1-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             rapp-public-cache-v1-
-      - name: Poll only complete public API sources
+      - name: Fetch raw public data and process JSON snapshots with Python
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python3 -m rapp_catalog scrape
+        run: python3 scrape.py
       - name: Test and build before committing any observation
         run: |
           python3 -m unittest discover -s tests -v
+          python3 scrape.py --check
           python3 -m rapp_catalog build --freshness .cache/last-run.json
       - name: Save public metadata hints
         uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
