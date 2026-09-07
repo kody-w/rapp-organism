@@ -41,6 +41,13 @@ of arbitrary frame payloads. Missing values and upstream last-good retention sta
 visible. Source frame IDs are provenance markers, not signature verification.
 Source code, free-form posts, credentials and the withheld raw carrier are not copied.
 
+An older world record cannot replace a newer snapshot. A record number cannot
+silently acquire different observations or a different frame ID, and an advancing
+record must have a new frame ID. Upstream health/retention flags may change without
+rewriting that observation. Conflicts stop both snapshot writes; source resets or
+processor changes that redefine an existing observation need an explicit reviewed
+baseline update, not an automatic rewrite of the time series.
+
 ## Optional inventory and query tools
 
 The larger frozen inventory, SQLite download and static catalog remain available,

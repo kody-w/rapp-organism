@@ -131,6 +131,19 @@ def repository_snapshot(bundle):
     }
 
 
+def check_world_progression(previous, current):
+    check_world(previous)
+    require(current["source_sequence"] >= previous["source_sequence"], "world_snapshot_rollback")
+    if current["source_sequence"] == previous["source_sequence"]:
+        # Source observations are immutable; upstream health can change independently.
+        health = {"upstream_refresh", "retained_last_good"}
+        old = {key: value for key, value in previous.items() if key not in health}
+        new = {key: value for key, value in current.items() if key not in health}
+        require(canonical(old) == canonical(new), "world_snapshot_conflict")
+    else:
+        require(current["source_frame_hash"] != previous["source_frame_hash"], "world_snapshot_conflict")
+
+
 def write_snapshots(root, raw):
     root = Path(root)
     documents = {
@@ -149,6 +162,9 @@ def write_snapshots(root, raw):
         body = (json.dumps(document, ensure_ascii=True, sort_keys=True, indent=2,
                            allow_nan=False) + "\n").encode("ascii")
         require(len(body) < 8 * 1024 * 1024, "snapshot_too_large")
+        if name == "world.json" and path.exists():
+            previous = load_json(path)
+            check_world_progression(previous, document)
         if not path.exists() or path.read_bytes() != body:
             changes.append((path, body))
     for path, body in changes:

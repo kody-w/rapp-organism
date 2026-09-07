@@ -5,7 +5,7 @@ from unittest import mock
 import scrape as pipeline
 from rapp_catalog.common import CatalogError, load_json
 from rapp_catalog.scrape import scrape
-from tests.helpers import CatalogCase, FixtureClient, LATER, NOW
+from tests.helpers import CatalogCase, FixtureClient, LATER, NEW_HEAD, NOW
 
 
 def world():
@@ -63,6 +63,44 @@ class SnapshotTests(CatalogCase):
         self.assertEqual(pipeline.write_snapshots(self.root, moved), ["snapshots/world.json"])
         self.assertEqual(load_json(self.root / "snapshots/world.json")["values"]["iss_latitude"], "-40.8")
         pipeline.check_snapshots(self.root)
+
+    def test_older_world_source_cannot_replace_latest_snapshot(self):
+        latest = world()
+        latest["world"].update(utc=LATER, seq=9, tick=10, frame_hash="b" * 64)
+        pipeline.write_snapshots(self.root, latest)
+        before = {p.name: p.read_bytes() for p in (self.root / "snapshots").iterdir()}
+        client = FixtureClient(cache=self.cache(), heads={"example/alpha": NEW_HEAD, "example/empty": None})
+        client.rows[0]["pushed_at"] = LATER
+        scrape(self.root, client=client, now=LATER)
+        with self.assertRaisesRegex(CatalogError, "world_snapshot_rollback"):
+            pipeline.write_snapshots(self.root, world())
+        self.assertEqual(before, {p.name: p.read_bytes() for p in (self.root / "snapshots").iterdir()})
+
+    def test_same_world_sequence_cannot_rewrite_observation(self):
+        raw = world()
+        pipeline.write_snapshots(self.root, raw)
+        before = {p.name: p.read_bytes() for p in (self.root / "snapshots").iterdir()}
+        changes = [
+            {"frame_hash": "b" * 64}, {"utc": LATER}, {"tick": 10},
+            {"data": {**raw["world"]["data"], "btc_usd": {"spot": "99.5"}}},
+            {"data": {**raw["world"]["data"], "btc_usd": {}}},
+        ]
+        for change in changes:
+            with self.subTest(fields=list(change)):
+                modified = copy.deepcopy(raw)
+                modified["world"].update(change)
+                with self.assertRaisesRegex(CatalogError, "world_snapshot_conflict"):
+                    pipeline.write_snapshots(self.root, modified)
+                self.assertEqual(before, {p.name: p.read_bytes() for p in (self.root / "snapshots").iterdir()})
+
+    def test_new_sequence_requires_a_new_source_frame(self):
+        raw = world()
+        pipeline.write_snapshots(self.root, raw)
+        before = {p.name: p.read_bytes() for p in (self.root / "snapshots").iterdir()}
+        raw["world"]["seq"] += 1
+        with self.assertRaisesRegex(CatalogError, "world_snapshot_conflict"):
+            pipeline.write_snapshots(self.root, raw)
+        self.assertEqual(before, {p.name: p.read_bytes() for p in (self.root / "snapshots").iterdir()})
 
     def test_upstream_retention_is_recorded_not_relabelled_as_fresh(self):
         raw = world()
