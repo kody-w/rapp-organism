@@ -703,7 +703,7 @@
       "fork": false,
       "full_name": "kody-w/RAR",
       "license_spdx": "MIT",
-      "observed_head": "3dd6714ebd1926320008ea26722eda4aebd9fd0f",
+      "observed_head": "8bdd656037f071337cb704ac7cbf03eb00440819",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/RAR",
       "repository_id": 1200565697
@@ -979,7 +979,7 @@
       "fork": true,
       "full_name": "kody-w/aibast-agents-library",
       "license_spdx": "MIT",
-      "observed_head": "2819766b789dfff55d4a710351d24622b802f4b8",
+      "observed_head": "87cb2a5c5b470501de34be6859099e3bd735eaf5",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/aibast-agents-library",
       "repository_id": 1080009582
@@ -1543,7 +1543,7 @@
       "fork": false,
       "full_name": "kody-w/dogg",
       "license_spdx": "MIT",
-      "observed_head": "4da85f18fd8c830e1dfad1fb76770b490a89d2d1",
+      "observed_head": "bc01dded358ad42abc8fabe0fe53035ead4c7502",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/dogg",
       "repository_id": 1345544200
@@ -1555,7 +1555,7 @@
       "fork": false,
       "full_name": "kody-w/dogg-api",
       "license_spdx": "MIT",
-      "observed_head": "ce0f54f14e5fff58e3900ec59a80320fafa4903e",
+      "observed_head": "9188ad35decd3238f0eef1aac50ca254280731b6",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/dogg-api",
       "repository_id": 1346624549
@@ -1627,7 +1627,7 @@
       "fork": false,
       "full_name": "kody-w/dogg-markets",
       "license_spdx": null,
-      "observed_head": "feff0b612af17afdc808494c5335770c971ebe7b",
+      "observed_head": "66d9ab0fb5e9b7e49159a5069d32ebb144f6d8a1",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/dogg-markets",
       "repository_id": 1346588818
@@ -1663,7 +1663,7 @@
       "fork": false,
       "full_name": "kody-w/dogg-planet",
       "license_spdx": null,
-      "observed_head": "84f2eaad475d054dd641271db1b5eab8d96900cc",
+      "observed_head": "792ec4323263384a6e85d0d2c958ea30e4b371da",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/dogg-planet",
       "repository_id": 1346588885
@@ -1675,7 +1675,7 @@
       "fork": false,
       "full_name": "kody-w/dogg-radio",
       "license_spdx": null,
-      "observed_head": "88dd31302e94aecb430a964504020823b048b659",
+      "observed_head": "cdf8b363f437184b3dc8265afe7332cf616a26f0",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/dogg-radio",
       "repository_id": 1349890468
@@ -1711,7 +1711,7 @@
       "fork": false,
       "full_name": "kody-w/dogg-verdict",
       "license_spdx": null,
-      "observed_head": "10882f13a55ad930b2a276ed83ba2c0efd1037a9",
+      "observed_head": "af54c938f5fc337a5a65a880a3d901c4fcbd0b16",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/dogg-verdict",
       "repository_id": 1346630075
@@ -1723,7 +1723,7 @@
       "fork": false,
       "full_name": "kody-w/dogg-water",
       "license_spdx": null,
-      "observed_head": "b4ca2c14a88918c84848ffddba0cea2b92fa7c0f",
+      "observed_head": "020291e0ea262ffe7c6bfb549a2fed7026267b14",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/dogg-water",
       "repository_id": 1349889503
@@ -3391,7 +3391,7 @@
       "fork": false,
       "full_name": "kody-w/rapp-installer-dev",
       "license_spdx": null,
-      "observed_head": "f4870e5106604dd66d1330ee4d7ecb34132820c8",
+      "observed_head": "3b3109e3346a344327f3446aa99c6a0df8ae0a69",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rapp-installer-dev",
       "repository_id": 1197669804
@@ -4699,7 +4699,7 @@
       "fork": false,
       "full_name": "kody-w/rappterbook",
       "license_spdx": "MIT",
-      "observed_head": "f8b2639b4d51c9327d9f769ae604c1aa6fc3fbaa",
+      "observed_head": "9e64f2c43593ddf5d1e722bcc93e355aadfa6754",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rappterbook",
       "repository_id": 1156726866
@@ -4735,7 +4735,7 @@
       "fork": false,
       "full_name": "kody-w/rappterbook-agent-exchange",
       "license_spdx": null,
-      "observed_head": "4231668c36e05edced5bc2494173d8ca1cf04c44",
+      "observed_head": "62256771e343dd905a0c5424f471a688ef07456a",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rappterbook-agent-exchange",
       "repository_id": 1183818326
@@ -4927,7 +4927,7 @@
       "fork": false,
       "full_name": "kody-w/rappterbook-vm",
       "license_spdx": "MIT",
-      "observed_head": "de9d9095e769d1559515f2d177247c13b61ae9f0",
+      "observed_head": "3273c38cef26b494598970c6d8a95f951703a0b4",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rappterbook-vm",
       "repository_id": 1158797124
@@ -5599,7 +5599,7 @@
       "fork": false,
       "full_name": "kody-w/static-library",
       "license_spdx": null,
-      "observed_head": "7b5f53238bc89dc522427168a00b0c41b876a6ae",
+      "observed_head": "b4d2a0c00c1c165836ef5b68b345c864843a7f98",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/static-library",
       "repository_id": 1309153365
@@ -6110,5 +6110,5 @@
     }
   ],
   "source": "https://api.github.com/users/kody-w/repos",
-  "source_observed_at": "2026-09-12T22:20:55Z"
+  "source_observed_at": "2026-09-13T01:03:12Z"
 }
