@@ -55,7 +55,7 @@
       "fork": false,
       "full_name": "kody-w/AINexus",
       "license_spdx": "MIT",
-      "observed_head": "2ffc9a3ebd3bf2f7ed30be9929f9cc752efaeb00",
+      "observed_head": "719adcc3257f197cba3aa9264779a07ebf66ac7a",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/AINexus",
       "repository_id": 1005997028
@@ -703,7 +703,7 @@
       "fork": false,
       "full_name": "kody-w/RAR",
       "license_spdx": "MIT",
-      "observed_head": "825301f4e7a35f4f612157c8700c2e6ac962bfb7",
+      "observed_head": "b18b9ac6c7ab56c682db8d5e9c493022a42a82f9",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/RAR",
       "repository_id": 1200565697
@@ -975,6 +975,18 @@
     {
       "archived": false,
       "availability": "public",
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "kody-w/ai-setup-pages",
+      "license_spdx": "MIT",
+      "observed_head": "99c27de1027d18e048b4cf32c69ac2e091484055",
+      "previous_names": [],
+      "public_url": "https://github.com/kody-w/ai-setup-pages",
+      "repository_id": 1384161787
+    },
+    {
+      "archived": false,
+      "availability": "public",
       "default_branch": "staging",
       "fork": true,
       "full_name": "kody-w/aibast-agents-library",
@@ -1145,9 +1157,21 @@
       "availability": "public",
       "default_branch": "main",
       "fork": false,
+      "full_name": "kody-w/brainstem",
+      "license_spdx": null,
+      "observed_head": "cdc77be20c31cbfd5faaeebaf8dba736d47ca5a3",
+      "previous_names": [],
+      "public_url": "https://github.com/kody-w/brainstem",
+      "repository_id": 1384190400
+    },
+    {
+      "archived": false,
+      "availability": "public",
+      "default_branch": "main",
+      "fork": false,
       "full_name": "kody-w/brainstem-agent",
       "license_spdx": null,
-      "observed_head": "e145df1a3660cc23fd56310d1bd7e68bd98d32f7",
+      "observed_head": "81d19c5aeeaf31b0beca8ddf5ab1c5dc8a13c571",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/brainstem-agent",
       "repository_id": 1379981365
@@ -1555,7 +1579,7 @@
       "fork": false,
       "full_name": "kody-w/dogg",
       "license_spdx": "MIT",
-      "observed_head": "ff2ca1e7c464a870230938c862f9d98f7be90635",
+      "observed_head": "6cb6684938161bfc9bdd95eebb1f7d2881f74957",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/dogg",
       "repository_id": 1345544200
@@ -1567,7 +1591,7 @@
       "fork": false,
       "full_name": "kody-w/dogg-api",
       "license_spdx": "MIT",
-      "observed_head": "e94bc26c6021dd767b3b6fa0317446023711b040",
+      "observed_head": "315fab975bde4eec5caae77d93e6a014633021fc",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/dogg-api",
       "repository_id": 1346624549
@@ -1639,7 +1663,7 @@
       "fork": false,
       "full_name": "kody-w/dogg-markets",
       "license_spdx": null,
-      "observed_head": "94224c5e799a1db6733d377b2dc42c455546e538",
+      "observed_head": "462eb020a022cd175c5cde0ab0b657c73e3fae6a",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/dogg-markets",
       "repository_id": 1346588818
@@ -1675,7 +1699,7 @@
       "fork": false,
       "full_name": "kody-w/dogg-planet",
       "license_spdx": null,
-      "observed_head": "b1dfd766a891ea138afa75d2d0e859a10ca525ce",
+      "observed_head": "099c626fc94a720431049c54e0ad855acbdeba4e",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/dogg-planet",
       "repository_id": 1346588885
@@ -1687,7 +1711,7 @@
       "fork": false,
       "full_name": "kody-w/dogg-radio",
       "license_spdx": null,
-      "observed_head": "4fba8a993bceb4d94e0383a638761047f476030c",
+      "observed_head": "6898c50abfd677aa3bacdc2fbe181dab64461ef6",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/dogg-radio",
       "repository_id": 1349890468
@@ -1723,7 +1747,7 @@
       "fork": false,
       "full_name": "kody-w/dogg-verdict",
       "license_spdx": null,
-      "observed_head": "b99ff730ad36b51eb9ea66cd454a591d3ff5a753",
+      "observed_head": "d4211f66dfc634bb7a20d46d46d63842b9ab15dc",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/dogg-verdict",
       "repository_id": 1346630075
@@ -1735,7 +1759,7 @@
       "fork": false,
       "full_name": "kody-w/dogg-water",
       "license_spdx": null,
-      "observed_head": "12468fa8124ac4b6e82b747f17e21a395bc96a96",
+      "observed_head": "1eebc16b445799d75abcd79d157b102fdd537696",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/dogg-water",
       "repository_id": 1349889503
@@ -1985,6 +2009,30 @@
       "availability": "public",
       "default_branch": "main",
       "fork": false,
+      "full_name": "kody-w/hive-hub-join",
+      "license_spdx": null,
+      "observed_head": "4c7620c8ae5301f65785bfe4a72fcb3254ec5857",
+      "previous_names": [],
+      "public_url": "https://github.com/kody-w/hive-hub-join",
+      "repository_id": 1384233594
+    },
+    {
+      "archived": false,
+      "availability": "public",
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "kody-w/hive-hub-mcp",
+      "license_spdx": "MIT",
+      "observed_head": "4a3424b2f4891d52a56b12d8d5028d967435c912",
+      "previous_names": [],
+      "public_url": "https://github.com/kody-w/hive-hub-mcp",
+      "repository_id": 1384233233
+    },
+    {
+      "archived": false,
+      "availability": "public",
+      "default_branch": "main",
+      "fork": false,
       "full_name": "kody-w/hive-showcase",
       "license_spdx": null,
       "observed_head": "331fb28f09b203ef3671d9d18ac3c4e1689a5198",
@@ -2083,7 +2131,7 @@
       "fork": false,
       "full_name": "kody-w/kody-twin",
       "license_spdx": null,
-      "observed_head": "a3259ccc454503df9736c201e96bbc08e1bab07b",
+      "observed_head": "1e5286b1c95fe28c52a2a2d63872682621d2a052",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/kody-twin",
       "repository_id": 1230430379
@@ -2107,7 +2155,7 @@
       "fork": false,
       "full_name": "kody-w/kody-w.github.io",
       "license_spdx": null,
-      "observed_head": "418f33a3b87932387e7d1911a7f82d3826ca29ac",
+      "observed_head": "1c1a67e11a4267c86d162f57f8f254dbf6159af7",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/kody-w.github.io",
       "repository_id": 50427162
@@ -2335,7 +2383,7 @@
       "fork": false,
       "full_name": "kody-w/mars-chain-node",
       "license_spdx": null,
-      "observed_head": "bcd4d1736c3e3e1b107817c3a22d57d72a1ddfa6",
+      "observed_head": "e6c68601aedea5798b176170075c8c614854c0dd",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/mars-chain-node",
       "repository_id": 1197854391
@@ -2887,7 +2935,7 @@
       "fork": false,
       "full_name": "kody-w/rapp-brainstem",
       "license_spdx": "NOASSERTION",
-      "observed_head": "48823c1e47b5df9f3c48dd33ac5bdd28fba39ff4",
+      "observed_head": "dd1f8f753c0fed7f48b61675e5fd1b34813a4f10",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rapp-brainstem",
       "repository_id": 1305235300
@@ -2911,7 +2959,7 @@
       "fork": false,
       "full_name": "kody-w/rapp-brainstem-claude",
       "license_spdx": null,
-      "observed_head": "5b7ccbe733c4fbe906a3c7debfb5c0362b88079e",
+      "observed_head": "2211bd93680b7375e775c9141e7cc93972d95529",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rapp-brainstem-claude",
       "repository_id": 1384047715
@@ -2923,7 +2971,7 @@
       "fork": false,
       "full_name": "kody-w/rapp-brainstem-claude-desktop",
       "license_spdx": null,
-      "observed_head": "d73d97b75647bd9e38051249734d71f67cc230ea",
+      "observed_head": "e84ba0ff682d9fc5546ac8f5fc14bed3ad56cd87",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rapp-brainstem-claude-desktop",
       "repository_id": 1384147719
@@ -2935,7 +2983,7 @@
       "fork": false,
       "full_name": "kody-w/rapp-brainstem-cline",
       "license_spdx": null,
-      "observed_head": "920a2bd265c1e9cb95b32288cb8fd45be3afcff4",
+      "observed_head": "bc92807f13b3c45e23bb29076d0467fc2408ce42",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rapp-brainstem-cline",
       "repository_id": 1384147184
@@ -2947,7 +2995,7 @@
       "fork": false,
       "full_name": "kody-w/rapp-brainstem-codex",
       "license_spdx": null,
-      "observed_head": "648621d02a743400180044e10f54c2e2295d1b01",
+      "observed_head": "34364fb1428813dc9ed16e1637187b4b231ebbf1",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rapp-brainstem-codex",
       "repository_id": 1384146600
@@ -2959,7 +3007,7 @@
       "fork": false,
       "full_name": "kody-w/rapp-brainstem-copilot",
       "license_spdx": null,
-      "observed_head": "b6bd6d1902790d092ab2c302fd216019913b1fa5",
+      "observed_head": "1ed120e9e0a274434b106d87670aeb847a3a83ee",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rapp-brainstem-copilot",
       "repository_id": 1384129037
@@ -2971,7 +3019,7 @@
       "fork": false,
       "full_name": "kody-w/rapp-brainstem-cursor",
       "license_spdx": null,
-      "observed_head": "fa7ce623abbc0b318268461dfbd9f7fecbcba96a",
+      "observed_head": "8a7a3c5f51b290a4e72d0e7ad431f9806ef0e6db",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rapp-brainstem-cursor",
       "repository_id": 1384146824
@@ -3007,7 +3055,7 @@
       "fork": false,
       "full_name": "kody-w/rapp-brainstem-gemini",
       "license_spdx": null,
-      "observed_head": "b8e73632002a734766f84f804da3d6ebc0ba5034",
+      "observed_head": "c9c5011985d7fc74665b18fc7e516f648e5b4ad2",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rapp-brainstem-gemini",
       "repository_id": 1384146943
@@ -3019,7 +3067,7 @@
       "fork": false,
       "full_name": "kody-w/rapp-brainstem-goose",
       "license_spdx": null,
-      "observed_head": "c235e27e5d43b721c6458dfe864402141d9f7631",
+      "observed_head": "57c1656db32b4e21439182aaf34480bffc5646c1",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rapp-brainstem-goose",
       "repository_id": 1384147307
@@ -3031,7 +3079,7 @@
       "fork": false,
       "full_name": "kody-w/rapp-brainstem-kiro",
       "license_spdx": null,
-      "observed_head": "15da2f1aa7b920e28966f15bfaeb5b59cfd96483",
+      "observed_head": "f33042fca002fb53392f26979759587769937082",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rapp-brainstem-kiro",
       "repository_id": 1384147598
@@ -3043,7 +3091,7 @@
       "fork": false,
       "full_name": "kody-w/rapp-brainstem-mcp",
       "license_spdx": null,
-      "observed_head": "8028f84dda6f194c72bd5ac73c379edac98b9293",
+      "observed_head": "e9cca1b600c818086138251aaf3e77fcfe54acf2",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rapp-brainstem-mcp",
       "repository_id": 1384147864
@@ -3055,7 +3103,7 @@
       "fork": false,
       "full_name": "kody-w/rapp-brainstem-opencode",
       "license_spdx": null,
-      "observed_head": "f3dfe5358fc73d3bfa19b1aa9f5f665dae65a213",
+      "observed_head": "c689b44884930d8fefb4f6bb9acd2dff56f6a7b8",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rapp-brainstem-opencode",
       "repository_id": 1384147431
@@ -3091,7 +3139,7 @@
       "fork": false,
       "full_name": "kody-w/rapp-brainstem-vscode",
       "license_spdx": null,
-      "observed_head": "3e8a649221ddbf3783861398d4053bb9b15f0d14",
+      "observed_head": "4e5be0a8bbe237adcb2eec864d639515c6883d61",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rapp-brainstem-vscode",
       "repository_id": 1384146729
@@ -3115,7 +3163,7 @@
       "fork": false,
       "full_name": "kody-w/rapp-brainstem-windsurf",
       "license_spdx": null,
-      "observed_head": "2855c695e6147f9345002973440841bee9648789",
+      "observed_head": "6e64c3c039366e8bf761ec158d25a7306f25103c",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rapp-brainstem-windsurf",
       "repository_id": 1384147060
@@ -3535,10 +3583,22 @@
       "fork": false,
       "full_name": "kody-w/rapp-hive-hub",
       "license_spdx": "MIT",
-      "observed_head": "8e568d423f89b70bda94db6a18b5299589755b66",
+      "observed_head": "e579f9cea54d7c577189f45ed2309da322911b54",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rapp-hive-hub",
       "repository_id": 1378962655
+    },
+    {
+      "archived": false,
+      "availability": "public",
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "kody-w/rapp-hive-hub-join",
+      "license_spdx": null,
+      "observed_head": "d99fc58f30a282d11a32b97ab820cf4690ee9a1a",
+      "previous_names": [],
+      "public_url": "https://github.com/kody-w/rapp-hive-hub-join",
+      "repository_id": 1384233406
     },
     {
       "archived": false,
@@ -3619,7 +3679,7 @@
       "fork": false,
       "full_name": "kody-w/rapp-installer-dev",
       "license_spdx": null,
-      "observed_head": "87e47286f410d74b5c923a150a9cc65240e7cef3",
+      "observed_head": "3262d587215d5f394a4fd6cae9446b552b8755fd",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rapp-installer-dev",
       "repository_id": 1197669804
@@ -3827,6 +3887,18 @@
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rapp-mission",
       "repository_id": 1357517242
+    },
+    {
+      "archived": false,
+      "availability": "public",
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "kody-w/rapp-model-hive",
+      "license_spdx": "MIT",
+      "observed_head": "83e039f58486afb529b1036087c03e9808a564ca",
+      "previous_names": [],
+      "public_url": "https://github.com/kody-w/rapp-model-hive",
+      "repository_id": 1384314664
     },
     {
       "archived": false,
@@ -4135,7 +4207,7 @@
       "fork": false,
       "full_name": "kody-w/rapp-release-train",
       "license_spdx": null,
-      "observed_head": "4e6f22056e55da5bc59d38e3e301abd80aaa28b3",
+      "observed_head": "c5d2bdb98a41421396ad3f0472ec034c19249f55",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rapp-release-train",
       "repository_id": 1304544191
@@ -4951,7 +5023,7 @@
       "fork": false,
       "full_name": "kody-w/rappterbook",
       "license_spdx": "MIT",
-      "observed_head": "a1b2c9a7226e0f79170fe7b33eaea1f9482b6de9",
+      "observed_head": "e4e00c51e74a2adfa693d0b457a0422bbbf72f17",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rappterbook",
       "repository_id": 1156726866
@@ -4987,7 +5059,7 @@
       "fork": false,
       "full_name": "kody-w/rappterbook-agent-exchange",
       "license_spdx": null,
-      "observed_head": "7056e158dde2483b7eb7d5073fd14458745e4f0f",
+      "observed_head": "ae35894368c0d7e3a0188acb933c24ef8367dc4f",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rappterbook-agent-exchange",
       "repository_id": 1183818326
@@ -5075,6 +5147,18 @@
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rappterbook-impossible-product",
       "repository_id": 1297910000
+    },
+    {
+      "archived": false,
+      "availability": "public",
+      "default_branch": "main",
+      "fork": false,
+      "full_name": "kody-w/rappterbook-join",
+      "license_spdx": null,
+      "observed_head": "fdaa23a7a16a410979f4e581850e31dfc2e0781a",
+      "previous_names": [],
+      "public_url": "https://github.com/kody-w/rappterbook-join",
+      "repository_id": 1384177580
     },
     {
       "archived": false,
@@ -5179,7 +5263,7 @@
       "fork": false,
       "full_name": "kody-w/rappterbook-vm",
       "license_spdx": "MIT",
-      "observed_head": "46c1eaa7c6f85e312ca0eb61311dfc30730de4c0",
+      "observed_head": "3dd85d3a3397d965f3de0544f642311b434c7410",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rappterbook-vm",
       "repository_id": 1158797124
@@ -5258,12 +5342,12 @@
     },
     {
       "archived": false,
-      "availability": "empty",
+      "availability": "public",
       "default_branch": "main",
       "fork": false,
       "full_name": "kody-w/rappvision-brainstem-notes",
       "license_spdx": null,
-      "observed_head": null,
+      "observed_head": "70a1b6f5c96a82f7ab3130747864778ff58bb6fc",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rappvision-brainstem-notes",
       "repository_id": 1384152311
@@ -5366,12 +5450,12 @@
     },
     {
       "archived": false,
-      "availability": "empty",
+      "availability": "public",
       "default_branch": "main",
       "fork": false,
       "full_name": "kody-w/rappvision-pigeon-post",
       "license_spdx": null,
-      "observed_head": null,
+      "observed_head": "836983fafa26a905d67e3860187cf3d6b7d9bcfb",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rappvision-pigeon-post",
       "repository_id": 1384152211
@@ -5402,12 +5486,12 @@
     },
     {
       "archived": false,
-      "availability": "empty",
+      "availability": "public",
       "default_branch": "main",
       "fork": false,
       "full_name": "kody-w/rappvision-protocol-minute",
       "license_spdx": null,
-      "observed_head": null,
+      "observed_head": "0a72c43d84e9eb3549fca14c0e6bf672bbe1bdd2",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/rappvision-protocol-minute",
       "repository_id": 1384152090
@@ -5899,7 +5983,7 @@
       "fork": false,
       "full_name": "kody-w/static-library",
       "license_spdx": null,
-      "observed_head": "1328e3268512db719df2c3f49d5d723648a53f96",
+      "observed_head": "b6d92838c5edf709d97262fc1aff4ff91ecc0568",
       "previous_names": [],
       "public_url": "https://github.com/kody-w/static-library",
       "repository_id": 1309153365
@@ -6422,5 +6506,5 @@
     }
   ],
   "source": "https://api.github.com/users/kody-w/repos",
-  "source_observed_at": "2026-09-23T20:25:34Z"
+  "source_observed_at": "2026-09-23T23:44:10Z"
 }
