@@ -1,5 +1,9 @@
 # RAPP public organism catalog
 
+<!-- rapp1:network-header:start -->
+[![RAPP/1](https://kody-w.github.io/rapp-hive-public/portfolio/badges/rapp-organism.svg)](https://github.com/kody-w/rapp-hive-public/blob/main/portfolio/repos/rapp-organism.md) · **New to RAPP?** [Start here: get your Brainstem →](https://github.com/kody-w/rapp-installer#start-here)
+<!-- rapp1:network-header:end -->
+
 **Python processes raw public data. Changed JSON is committed to Git. Git history
 is the time series.** This follows Simon Willison's git-scraping pattern: compare
 successive snapshots to see what moved, rather than standing up a database service.
